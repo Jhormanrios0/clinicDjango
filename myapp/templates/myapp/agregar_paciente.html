@@ -10,13 +10,6 @@
 
 <body>
     <h1>Agregar Paciente</h1>
-    <nav class="container mx-auto flex items-end">
-        <a href="{% url 'pagina_principal' %}" class="inline-block mt-4">
-            <button class="px-4 py-2 bg-blue-500 text-white font-bold rounded-md shadow-md hover:bg-blue-700">
-                Volver
-            </button>
-        </a>
-    </nav>
     <form method="POST" action="{% url 'agregar_paciente' %}"
         class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
         {% csrf_token %}
@@ -215,94 +208,45 @@
     </form>
 
     <h2 class="text-2xl font-bold mb-4">Listado de Pacientes</h2>
-
-    <!-- Primera Tabla -->
-    <table class="min-w-full bg-white border border-gray-300 mb-4">
+    <table class="min-w-full bg-white border border-gray-300">
         <thead>
             <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                 <th class="py-3 px-4 border-b border-gray-300">Documento de Identificación</th>
-                <th class="py-3 px-4 border-b border-gray-300">País</th>
-                <th class="py-3 px-4 border-b border-gray-300">Tipo Documentación</th>
-                <th class="py-3 px-4 border-b border-gray-300">Primer Apellido</th>
-                <th class="py-3 px-4 border-b border-gray-300">Segundo Apellido</th>
                 <th class="py-3 px-4 border-b border-gray-300">Primer Nombre</th>
                 <th class="py-3 px-4 border-b border-gray-300">Segundo Nombre</th>
+                <th class="py-3 px-4 border-b border-gray-300">Fecha de Nacimiento</th>
+                <th class="py-3 px-4 border-b border-gray-300">Acciones</th>
             </tr>
         </thead>
         <tbody>
             {% for paciente in pacientes %}
             <tr class="border-b border-gray-200 hover:bg-gray-100">
-                <td class="py-3 px-4">{{ ct_documentoIdentificacion.ct_numeroDocumentoIdentificacion }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_pais }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_tipodocumentacion_id }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_primerapellido }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_segundoapellido }}</td>
+                <td class="py-3 px-4">{{ paciente.ct_numeroDocumentoIdentificacion }}</td>
                 <td class="py-3 px-4">{{ paciente.ct_primernombre }}</td>
                 <td class="py-3 px-4">{{ paciente.ct_segundonombre }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <!-- Segunda Tabla -->
-    <table class="min-w-full bg-white border border-gray-300 mb-4">
-        <thead>
-            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                <th class="py-3 px-4 border-b border-gray-300">Fecha de Nacimiento</th>
-                <th class="py-3 px-4 border-b border-gray-300">Sexo Biológico</th>
-                <th class="py-3 px-4 border-b border-gray-300">Identidad de Género</th>
-                <th class="py-3 px-4 border-b border-gray-300">Ocupación</th>
-                <th class="py-3 px-4 border-b border-gray-300">Oposición Donación</th>
-                <th class="py-3 px-4 border-b border-gray-300">Fecha Oposición Donación</th>
-                <th class="py-3 px-4 border-b border-gray-300">Nombre Voluntad Anticipada</th>
-                <th class="py-3 px-4 border-b border-gray-300">Fecha Voluntad Anticipada</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for paciente in pacientes %}
-            <tr class="border-b border-gray-200 hover:bg-gray-100">
                 <td class="py-3 px-4">{{ paciente.ct_fechanacimiento }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_nombresexobiologico }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_nombreidentidadgenero }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_ocupacion }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_oposiciondonacion }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_fechaoposiciondonacion }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_nombrevoluntadanticipada }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_fechavoluntadanticipada }}</td>
+                <td class="py-3 px-4">
+                    <button class="px-4 py-2 bg-blue-500 text-white font-bold rounded-md shadow-md hover:bg-blue-700"
+                        onclick="mostrarDetalles({{ paciente.id }})">Ver Más</button>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    <a href="{% url 'pagina_principal' %}" class="inline-block mt-4">
+        <button
+            class="px-4 py-2 bg-blue-500 text-white font-bold rounded-md shadow-md hover:bg-blue-700">Volver</button>
+    </a>
 
-    <!-- Tercera Tabla -->
-    <table class="min-w-full bg-white border border-gray-300 mb-4">
-        <thead>
-            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                <th class="py-3 px-4 border-b border-gray-300">Categoría Discapacidad</th>
-                <th class="py-3 px-4 border-b border-gray-300">Municipio de Residencia</th>
-                <th class="py-3 px-4 border-b border-gray-300">Departamento de Residencia</th>
-                <th class="py-3 px-4 border-b border-gray-300">Comunidad Étnica</th>
-                <th class="py-3 px-4 border-b border-gray-300">Pertenencia Étnica</th>
-                <th class="py-3 px-4 border-b border-gray-300">Zona Territorial</th>
-                <th class="py-3 px-4 border-b border-gray-300">Entidad Responsable</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for paciente in pacientes %}
-            <tr class="border-b border-gray-200 hover:bg-gray-100">
-                <td class="py-3 px-4">{{ paciente.ct_categoriadiscapacidad }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_municipioresidencia }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_departamentoresidencia }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_comunidadetnica }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_pertenenciaetnica }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_nombrezonaterritorial }}</td>
-                <td class="py-3 px-4">{{ paciente.ct_entidadresponsable }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-
+    <!-- Modal -->
+    <div id="detallesModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden justify-center items-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
+            <h3 class="text-xl font-bold mb-4">Detalles del Paciente</h3>
+            <div id="contenidoModal"></div>
+            <button class="mt-4 px-4 py-2 bg-red-500 text-white font-bold rounded-md shadow-md hover:bg-red-700"
+                onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
     <script src="{% static 'js/main.js' %}"></script>
 </body>
 
