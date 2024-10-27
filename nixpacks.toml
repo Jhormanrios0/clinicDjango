@@ -9,6 +9,7 @@ commands = [
   "/opt/venv/bin/pip install sqlparse",
   "/opt/venv/bin/pip install packaging",
   "/opt/venv/bin/pip install typing_extensions",
+  "/opt/venv/bin/pip install gunicorn"  # Agregar esta línea
 ]
 
 [phases.start]
