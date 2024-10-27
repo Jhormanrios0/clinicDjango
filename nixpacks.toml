@@ -1,6 +1,6 @@
 [phases.setup]
 commands = [
-  "apt-get update && apt-get install -y python3-pip",
+  "apt-get update && apt-get install -y python3-pip python3-dev build-essential libpq-dev",
   "pip3 install -r requirements.txt"
 ]
 
