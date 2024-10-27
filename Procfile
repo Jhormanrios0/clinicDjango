@@ -1,1 +1,1 @@
-web: /opt/venv/bin/gunicorn clinicaTendencias.wsgi
+web: python3 manage.py collectstatic && /opt/venv/bin/gunicorn clinicaTendencias.wsgi

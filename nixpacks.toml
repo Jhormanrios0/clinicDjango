@@ -9,5 +9,7 @@ commands = [
   "/opt/venv/bin/pip install sqlparse",
   "/opt/venv/bin/pip install packaging",
   "/opt/venv/bin/pip install typing_extensions",
-  "/opt/venv/bin/pip install gunicorn"
+  "/opt/venv/bin/pip install gunicorn",
+  "/opt/venv/bin/pip install whitenoise "
+  
 ]
