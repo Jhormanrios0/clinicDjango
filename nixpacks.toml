@@ -3,11 +3,14 @@ commands = [
   "apt-get update && apt-get install -y python3-pip python3-dev build-essential libpq-dev",
   "pip3 install django",
   "pip3 install psycopg2",
+  "pip3 install asgiref",
+  "pip3 install sqlparse",
+  "pip3 install packaging",
+  "pip3 install typing_extensions",
 ]
 
 [phases.start]
 commands = [
-  "pip3 install gunicorn",
   "gunicorn clinicaTendencias.wsgi:application --bind 0.0.0.0:$PORT --workers 3"
 ]
 
