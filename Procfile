@@ -1,1 +1,1 @@
-web: python3 manage.py collectstatic && /opt/venv/bin/gunicorn clinicaTendencias.wsgi
+web: /opt/venv/bin/python3 manage.py collectstatic --noinput && /opt/venv/bin/gunicorn clinicaTendencias.wsgi:application --bind 0.0.0.0:$PORT
