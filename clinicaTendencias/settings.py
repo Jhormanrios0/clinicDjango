@@ -135,6 +135,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-ALLOWE_HOSTS = ['localhost','clinicdjango.up.railway.app']
+ALLOWED_HOSTS = ['localhost','clinicdjango.up.railway.app']
 
 CSRF_TRUSTED_ORIGINS = ['http://*','https://clinicdjango.up.railway.app']
