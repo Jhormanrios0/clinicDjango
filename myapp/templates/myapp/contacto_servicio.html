@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Contacto Servicio de Salud</title>
+</head>
+<body>
+    <h1>Contacto Servicio de Salud</h1>
+    <p>Aquí puedes contactar al servicio de salud.</p>
+    <form method="POST" action="{% url 'contacto_servicio' %}">
+        {% csrf_token %}
+
+        <label for="prestador_servicio">Prestador servicio:</label>
+        <select name="prestador_servicio" id="prestador_servicio">
+            {% for prestador_servicio in prestadores_servicios %}
+                <option value="{{ prestador_servicio.0 }}">{{ prestador_servicio.1 }}</option> <!-- Ajusta índice según la estructura -->
+            {% endfor %}
+        </select>
+
+        <label for="modalidad_servicio">Modalidad servicio:</label>
+        <select name="modalidad_servicio" id="modalidad_servicio">
+            {% for modalidad_servicio in modalidades_servicios %}
+                <option value="{{ modalidad_servicio.0 }}">{{ modalidad_servicio.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="via_ingreso">Via ingreso:</label>
+        <select name="via_ingreso" id="via_ingreso">
+            {% for via_ingreso in vias_ingreso %}
+                <option value="{{ via_ingreso.0 }}">{{ via_ingreso.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="causa_atencion">Causa atencion:</label>
+        <select name="causa_atencion" id="causa_atencion">
+            {% for causa_atencion in causas_atencion %}
+                <option value="{{ causa_atencion.0 }}">{{ causa_atencion.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="diagnostico_principal_ingreso">Diagnostico principal ingreso:</label>
+        <select name="diagnostico_principal_ingreso" id="diagnostico_principal_ingreso">
+            {% for diagnostico_principal_ingreso in diagnosticos_principales_ingreso %}
+                <option value="{{ diagnostico_principal_ingreso.0 }}">{{ diagnostico_principal_ingreso.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Agregar consulta</button>
+    </form>
+    <a href="{% url 'pagina_principal' %}"><button>Volver</button></a>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<h1>Pacientes</h1>
+<a href="{% url 'agregar_paciente' %}">Agregar Paciente</a>
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Acciones</th>
+    </tr>
+    {% for paciente in pacientes %}
+    <tr>
+        <td>{{ paciente.nombre }}</td>
+        <td>{{ paciente.apellido }}</td>
+        <td>
+            <a href="{% url 'editar_paciente' paciente.pk %}">Editar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>

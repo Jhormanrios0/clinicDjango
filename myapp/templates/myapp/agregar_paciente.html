@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Paciente</title>
+</head>
+<body>
+    <h1>Agregar Paciente</h1>
+    <form method="POST" action="{% url 'agregar_paciente' %}">
+        {% csrf_token %}
+
+        <!-- Selección de País -->
+        <label for="pais">País:</label>
+        <select name="pais" id="pais">
+            {% for pais in paises %}
+                <option value="{{ pais.0 }}">{{ pais.1 }}</option>
+            {% endfor %}
+        </select>
+
+
+        <!-- Tipo de Documentación -->
+        <label for="tipodocumentacion">Tipo de Documentación:</label>
+        <select name="tipodocumentacion" id="tipodocumentacion">
+            {% for tipo_id, nombre in choices_tipodocumentacion %}
+                <option value="{{ tipo_id }}">{{ nombre }}</option>
+            {% endfor %}
+        </select>        cd C:\Study\clinica\Tendencias
+
+        <!-- Número de Documento -->
+        <label for="numeroDocumento">Número de Documento:</label>
+        <input type="text" name="numeroDocumento" id="numeroDocumento" required>
+
+
+        <!-- Campos de nombre y apellido -->
+        <label for="ct_primerapellido">Primer Apellido:</label>
+        <input type="text" name="ct_primerapellido" id="ct_primerapellido" required>
+
+        <label for="ct_segundoapellido">Segundo Apellido:</label>
+        <input type="text" name="ct_segundoapellido" id="ct_segundoapellido">
+
+        <label for="ct_primernombre">Primer Nombre:</label>
+        <input type="text" name="ct_primernombre" id="ct_primernombre" required>
+
+        <label for="ct_segundonombre">Segundo Nombre:</label>
+        <input type="text" name="ct_segundonombre" id="ct_segundonombre">
+
+        <!-- Fecha de Nacimiento -->
+        <label for="ct_fechanacimiento">Fecha de Nacimiento:</label>
+        <input type="date" name="ct_fechanacimiento" id="ct_fechanacimiento" required>
+
+        <!-- Sexo Biológico -->
+        <label for="ct_nombresexobiologico">Sexo Biológico:</label>
+        <select name="ct_nombresexobiologico" id="ct_nombresexobiologico">
+            {% for sexo in choices_sexobiologico %}
+                <option value="{{ sexo.0 }}">{{ sexo.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Identidad de Género -->
+        <label for="ct_nombreidentidadgenero">Identidad de Género:</label>
+        <select name="ct_nombreidentidadgenero" id="ct_nombreidentidadgenero">
+            {% for genero in choices_identidadgenero %}
+                <option value="{{ genero.0 }}">{{ genero.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Nombre Voluntad Anticipada-->
+        <label for="ct_nombrevoluntadanticipada">Nombre Voluntad Anticipada:</label>
+        <select name="ct_nombrevoluntadanticipada" id="ct_nombrevoluntadanticipada" required>
+            <option value="Sí">Sí</option>
+            <option value="No">No</option>
+        </select>   
+        
+
+        <!-- Nombre Zona Territorial-->
+        <label for="ct_nombrezonaterritorial">Nombre Zona Territorial:</label>
+        <select name="ct_nombrezonaterritorial" id="ct_nombrezonaterritorial" required>
+            <option value="Rural">Rural</option>
+            <option value="Urbano">Urbano</option>
+        </select>
+
+
+        <!-- Ocupación -->
+        <label for="ocupacion">Ocupación:</label>
+        <select name="ocupacion" id="ocupacion">
+            {% for ocupacion in ocupaciones %}
+                <option value="{{ ocupacion.0 }}">{{ ocupacion.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Oposición a Donación -->
+        <label for="ct_oposiciondonacion">Oposición a Donación:</label>
+        <select name="ct_oposiciondonacion" id="ct_oposiciondonacion">
+            {% for opcion in choices_oposiciondonacion %}
+                <option value="{{ opcion.0 }}">{{ opcion.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <!-- Otros campos adicionales -->
+        <!-- Aquí podrías agregar los campos para discapacidad, departamento, municipio, etnia, comunidad y entidad responsable -->
+
+        <label for="discapacidad">Discapacidad:</label>
+        <select name="discapacidad" id="discapacidad">
+            {% for discapacidad in discapacidades %}
+                <option value="{{ discapacidad.0 }}">{{ discapacidad.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="departamento">Departamento de Residencia:</label>
+        <select name="departamento" id="departamento">
+            {% for departamento in departamentos %}
+                <option value="{{ departamento.0 }}">{{ departamento.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="municipio">Municipio de Residencia:</label>
+        <select name="municipio" id="municipio">
+            {% for municipio in municipios %}
+                <option value="{{ municipio.0 }}">{{ municipio.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="etnia">Pertenencia Étnica:</label>
+        <select name="etnia" id="etnia">
+            {% for etnia in etnias %}
+                <option value="{{ etnia.0 }}">{{ etnia.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="comunidad">Comunidad Étnica:</label>
+        <select name="comunidad" id="comunidad">
+            {% for comunidad in comunidades %}
+                <option value="{{ comunidad.0 }}">{{ comunidad.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="entidades_responsables">Entidad Responsable:</label>
+        <select name="entidades_responsables" id="entidades_responsables">
+            {% for entidad in entidades_responsables %}
+                <option value="{{ entidad.0 }}">{{ entidad.1 }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Agregar Paciente</button>
+    </form>
+
+    <h2>Listado de Pacientes</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Documento de Identificación</th>
+                <th>País</th>
+                <th>Tipo Documentación</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>Primer Nombre</th>
+                <th>Segundo Nombre</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Sexo Biológico</th>
+                <th>Identidad de Género</th>
+                <th>Ocupación</th>
+                <th>Oposición Donación</th>
+                <th>Fecha Oposición Donación</th>
+                <th>Nombre Voluntad Anticipada</th>
+                <th>Fecha Voluntad Anticipada</th>
+                <th>Categoría Discapacidad</th>
+                <th>Municipio de Residencia</th>
+                <th>Departamento de Residencia</th>
+                <th>Comunidad Étnica</th>
+                <th>Pertenencia Étnica</th>
+                <th>Zona Territorial</th>
+                <th>Entidad Responsable</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paciente in pacientes %}
+            <tr>
+                <td>{{ ct_documentoIdentificacion.ct_numeroDocumentoIdentificacion }}</td>
+                <td>{{ paciente.ct_pais }}</td>
+                <td>{{ paciente.ct_tipodocumentacion_id }}</td>
+                <td>{{ paciente.ct_primerapellido }}</td>
+                <td>{{ paciente.ct_segundoapellido }}</td>
+                <td>{{ paciente.ct_primernombre }}</td>
+                <td>{{ paciente.ct_segundonombre }}</td>
+                <td>{{ paciente.ct_fechanacimiento }}</td>
+                <td>{{ paciente.ct_nombresexobiologico }}</td>
+                <td>{{ paciente.ct_nombreidentidadgenero }}</td>
+                <td>{{ paciente.ct_ocupacion }}</td>
+                <td>{{ paciente.ct_oposiciondonacion }}</td>
+                <td>{{ paciente.ct_fechaoposiciondonacion }}</td>
+                <td>{{ paciente.ct_nombrevoluntadanticipada }}</td>
+                <td>{{ paciente.ct_fechavoluntadanticipada }}</td>
+                <td>{{ paciente.ct_categoriadiscapacidad }}</td>
+                <td>{{ paciente.ct_municipioresidencia }}</td>
+                <td>{{ paciente.ct_departamentoresidencia }}</td>
+                <td>{{ paciente.ct_comunidadetnica }}</td>
+                <td>{{ paciente.ct_pertenenciaetnica }}</td>
+                <td>{{ paciente.ct_nombrezonaterritorial }}</td>
+                <td>{{ paciente.ct_entidadresponsable }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'pagina_principal' %}"><button>Volver</button></a>
+</body>
+</html>
+
+
