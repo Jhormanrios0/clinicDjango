@@ -6,7 +6,3 @@ commands = [
   "pip3 install gunicorn"
 ]
 
-[phases.start]
-commands = [
-  "gunicorn clinicaTendencias.wsgi:application --bind 0.0.0.0:$PORT"
-]
