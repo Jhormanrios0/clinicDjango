@@ -1,148 +1,210 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Agregar Paciente</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
 <body>
     <h1>Agregar Paciente</h1>
-    <form method="POST" action="{% url 'agregar_paciente' %}">
+    <form method="POST" action="{% url 'agregar_paciente' %}"
+        class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
         {% csrf_token %}
 
         <!-- Selección de País -->
-        <label for="pais">País:</label>
-        <select name="pais" id="pais">
-            {% for pais in paises %}
+        <div class="mb-4">
+            <label for="pais" class="block text-gray-700 font-bold mb-2">País:</label>
+            <select name="pais" id="pais" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+                {% for pais in paises %}
                 <option value="{{ pais.0 }}">{{ pais.1 }}</option>
-            {% endfor %}
-        </select>
-
+                {% endfor %}
+            </select>
+        </div>
 
         <!-- Tipo de Documentación -->
-        <label for="tipodocumentacion">Tipo de Documentación:</label>
-        <select name="tipodocumentacion" id="tipodocumentacion">
-            {% for tipo_id, nombre in choices_tipodocumentacion %}
+        <div class="mb-4">
+            <label for="tipodocumentacion" class="block text-gray-700 font-bold mb-2">Tipo de Documentación:</label>
+            <select name="tipodocumentacion" id="tipodocumentacion"
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+                {% for tipo_id, nombre in choices_tipodocumentacion %}
                 <option value="{{ tipo_id }}">{{ nombre }}</option>
-            {% endfor %}
-        </select>        cd C:\Study\clinica\Tendencias
+                {% endfor %}
+            </select>
+        </div>
 
         <!-- Número de Documento -->
-        <label for="numeroDocumento">Número de Documento:</label>
-        <input type="text" name="numeroDocumento" id="numeroDocumento" required>
-
+        <div class="mb-4">
+            <label for="numeroDocumento" class="block text-gray-700 font-bold mb-2">Número de Documento:</label>
+            <input type="text" name="numeroDocumento" id="numeroDocumento" required
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+        </div>
 
         <!-- Campos de nombre y apellido -->
-        <label for="ct_primerapellido">Primer Apellido:</label>
-        <input type="text" name="ct_primerapellido" id="ct_primerapellido" required>
+        <div class="mb-4">
+            <label for="ct_primerapellido" class="block text-gray-700 font-bold mb-2">Primer Apellido:</label>
+            <input type="text" name="ct_primerapellido" id="ct_primerapellido" required
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+        </div>
 
-        <label for="ct_segundoapellido">Segundo Apellido:</label>
-        <input type="text" name="ct_segundoapellido" id="ct_segundoapellido">
+        <div class="mb-4">
+            <label for="ct_segundoapellido" class="block text-gray-700 font-bold mb-2">Segundo Apellido:</label>
+            <input type="text" name="ct_segundoapellido" id="ct_segundoapellido"
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+        </div>
 
-        <label for="ct_primernombre">Primer Nombre:</label>
-        <input type="text" name="ct_primernombre" id="ct_primernombre" required>
+        <div class="mb-4">
+            <label for="ct_primernombre" class="block text-gray-700 font-bold mb-2">Primer Nombre:</label>
+            <input type="text" name="ct_primernombre" id="ct_primernombre" required
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+        </div>
 
-        <label for="ct_segundonombre">Segundo Nombre:</label>
-        <input type="text" name="ct_segundonombre" id="ct_segundonombre">
+        <div class="mb-4">
+            <label for="ct_segundonombre" class="block text-gray-700 font-bold mb-2">Segundo Nombre:</label>
+            <input type="text" name="ct_segundonombre" id="ct_segundonombre"
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+        </div>
 
         <!-- Fecha de Nacimiento -->
-        <label for="ct_fechanacimiento">Fecha de Nacimiento:</label>
-        <input type="date" name="ct_fechanacimiento" id="ct_fechanacimiento" required>
+        <div class="mb-4">
+            <label for="ct_fechanacimiento" class="block text-gray-700 font-bold mb-2">Fecha de Nacimiento:</label>
+            <input type="date" name="ct_fechanacimiento" id="ct_fechanacimiento" required
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+        </div>
 
         <!-- Sexo Biológico -->
-        <label for="ct_nombresexobiologico">Sexo Biológico:</label>
-        <select name="ct_nombresexobiologico" id="ct_nombresexobiologico">
-            {% for sexo in choices_sexobiologico %}
+        <div class="mb-4">
+            <label for="ct_nombresexobiologico" class="block text-gray-700 font-bold mb-2">Sexo Biológico:</label>
+            <select name="ct_nombresexobiologico" id="ct_nombresexobiologico"
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+                {% for sexo in choices_sexobiologico %}
                 <option value="{{ sexo.0 }}">{{ sexo.1 }}</option>
-            {% endfor %}
-        </select>
+                {% endfor %}
+            </select>
+        </div>
 
         <!-- Identidad de Género -->
-        <label for="ct_nombreidentidadgenero">Identidad de Género:</label>
-        <select name="ct_nombreidentidadgenero" id="ct_nombreidentidadgenero">
-            {% for genero in choices_identidadgenero %}
+        <div class="mb-4">
+            <label for="ct_nombreidentidadgenero" class="block text-gray-700 font-bold mb-2">Identidad de
+                Género:</label>
+            <select name="ct_nombreidentidadgenero" id="ct_nombreidentidadgenero"
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+                {% for genero in choices_identidadgenero %}
                 <option value="{{ genero.0 }}">{{ genero.1 }}</option>
-            {% endfor %}
-        </select>
+                {% endfor %}
+            </select>
+        </div>
 
         <!-- Nombre Voluntad Anticipada-->
-        <label for="ct_nombrevoluntadanticipada">Nombre Voluntad Anticipada:</label>
-        <select name="ct_nombrevoluntadanticipada" id="ct_nombrevoluntadanticipada" required>
-            <option value="Sí">Sí</option>
-            <option value="No">No</option>
-        </select>   
-        
+        <div class="mb-4">
+            <label for="ct_nombrevoluntadanticipada" class="block text-gray-700 font-bold mb-2">Nombre Voluntad
+                Anticipada:</label>
+            <select name="ct_nombrevoluntadanticipada" id="ct_nombrevoluntadanticipada" required
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+                <option value="Sí">Sí</option>
+                <option value="No">No</option>
+            </select>
+        </div>
 
         <!-- Nombre Zona Territorial-->
-        <label for="ct_nombrezonaterritorial">Nombre Zona Territorial:</label>
-        <select name="ct_nombrezonaterritorial" id="ct_nombrezonaterritorial" required>
-            <option value="Rural">Rural</option>
-            <option value="Urbano">Urbano</option>
-        </select>
-
+        <div class="mb-4">
+            <label for="ct_nombrezonaterritorial" class="block text-gray-700 font-bold mb-2">Nombre Zona
+                Territorial:</label>
+            <select name="ct_nombrezonaterritorial" id="ct_nombrezonaterritorial" required
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+                <option value="Rural">Rural</option>
+                <option value="Urbano">Urbano</option>
+            </select>
+        </div>
 
         <!-- Ocupación -->
-        <label for="ocupacion">Ocupación:</label>
-        <select name="ocupacion" id="ocupacion">
-            {% for ocupacion in ocupaciones %}
+        <div class="mb-4">
+            <label for="ocupacion" class="block text-gray-700 font-bold mb-2">Ocupación:</label>
+            <select name="ocupacion" id="ocupacion" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+                {% for ocupacion in ocupaciones %}
                 <option value="{{ ocupacion.0 }}">{{ ocupacion.1 }}</option>
-            {% endfor %}
-        </select>
+                {% endfor %}
+            </select>
+        </div>
 
         <!-- Oposición a Donación -->
-        <label for="ct_oposiciondonacion">Oposición a Donación:</label>
-        <select name="ct_oposiciondonacion" id="ct_oposiciondonacion">
-            {% for opcion in choices_oposiciondonacion %}
+        <div class="mb-4">
+            <label for="ct_oposiciondonacion" class="block text-gray-700 font-bold mb-2">Oposición a Donación:</label>
+            <select name="ct_oposiciondonacion" id="ct_oposiciondonacion"
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+                {% for opcion in choices_oposiciondonacion %}
                 <option value="{{ opcion.0 }}">{{ opcion.1 }}</option>
-            {% endfor %}
-        </select>
+                {% endfor %}
+            </select>
+        </div>
 
         <!-- Otros campos adicionales -->
         <!-- Aquí podrías agregar los campos para discapacidad, departamento, municipio, etnia, comunidad y entidad responsable -->
 
-        <label for="discapacidad">Discapacidad:</label>
-        <select name="discapacidad" id="discapacidad">
-            {% for discapacidad in discapacidades %}
+        <div class="mb-4">
+            <label for="discapacidad" class="block text-gray-700 font-bold mb-2">Discapacidad:</label>
+            <select name="discapacidad" id="discapacidad"
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+                {% for discapacidad in discapacidades %}
                 <option value="{{ discapacidad.0 }}">{{ discapacidad.1 }}</option>
-            {% endfor %}
-        </select>
+                {% endfor %}
+            </select>
+        </div>
 
-        <label for="departamento">Departamento de Residencia:</label>
-        <select name="departamento" id="departamento">
-            {% for departamento in departamentos %}
+        <div class="mb-4">
+            <label for="departamento" class="block text-gray-700 font-bold mb-2">Departamento de Residencia:</label>
+            <select name="departamento" id="departamento"
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+                {% for departamento in departamentos %}
                 <option value="{{ departamento.0 }}">{{ departamento.1 }}</option>
-            {% endfor %}
-        </select>
+                {% endfor %}
+            </select>
+        </div>
 
-        <label for="municipio">Municipio de Residencia:</label>
-        <select name="municipio" id="municipio">
-            {% for municipio in municipios %}
+        <div class="mb-4">
+            <label for="municipio" class="block text-gray-700 font-bold mb-2">Municipio de Residencia:</label>
+            <select name="municipio" id="municipio" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+                {% for municipio in municipios %}
                 <option value="{{ municipio.0 }}">{{ municipio.1 }}</option>
-            {% endfor %}
-        </select>
+                {% endfor %}
+            </select>
+        </div>
 
-        <label for="etnia">Pertenencia Étnica:</label>
-        <select name="etnia" id="etnia">
-            {% for etnia in etnias %}
+        <div class="mb-4">
+            <label for="etnia" class="block text-gray-700 font-bold mb-2">Pertenencia Étnica:</label>
+            <select name="etnia" id="etnia" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+                {% for etnia in etnias %}
                 <option value="{{ etnia.0 }}">{{ etnia.1 }}</option>
-            {% endfor %}
-        </select>
+                {% endfor %}
+            </select>
+        </div>
 
-        <label for="comunidad">Comunidad Étnica:</label>
-        <select name="comunidad" id="comunidad">
-            {% for comunidad in comunidades %}
+        <div class="mb-4">
+            <label for="comunidad" class="block text-gray-700 font-bold mb-2">Comunidad Étnica:</label>
+            <select name="comunidad" id="comunidad" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+                {% for comunidad in comunidades %}
                 <option value="{{ comunidad.0 }}">{{ comunidad.1 }}</option>
-            {% endfor %}
-        </select>
+                {% endfor %}
+            </select>
+        </div>
 
-        <label for="entidades_responsables">Entidad Responsable:</label>
-        <select name="entidades_responsables" id="entidades_responsables">
-            {% for entidad in entidades_responsables %}
+        <div class="mb-4">
+            <label for="entidades_responsables" class="block text-gray-700 font-bold mb-2">Entidad Responsable:</label>
+            <select name="entidades_responsables" id="entidades_responsables"
+                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm">
+                {% for entidad in entidades_responsables %}
                 <option value="{{ entidad.0 }}">{{ entidad.1 }}</option>
-            {% endfor %}
-        </select>
+                {% endfor %}
+            </select>
+        </div>
 
-        <button type="submit">Agregar Paciente</button>
+        <div class="flex justify-end">
+            <button type="submit"
+                class="px-4 py-2 bg-blue-500 text-white font-bold rounded-md shadow-md hover:bg-blue-700">Agregar
+                Paciente</button>
+        </div>
     </form>
 
     <h2>Listado de Pacientes</h2>
@@ -205,6 +267,5 @@
     <a href="{% url 'pagina_principal' %}"><button>Volver</button></a>
     <script src="{% static 'js/main.js' %}"></script>
 </body>
+
 </html>
-
-
