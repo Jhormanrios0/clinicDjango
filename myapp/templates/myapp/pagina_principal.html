@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Página Principal</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Bienvenido</h1>
-    <a href="{% url 'agregar_paciente' %}"><button>Agregar Paciente</button></a>
-    <a href="{% url 'contacto_servicio' %}"><button>Contacto Servicio de Salud</button></a>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="text-center bg-white shadow-lg rounded-lg p-8">
+        <h1 class="text-2xl font-bold text-gray-700 mb-6">Bienvenido</h1>
+        <div class="space-y-4">
+            <a href="{% url 'agregar_paciente' %}">
+                <button class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+                    Agregar Paciente
+                </button>
+            </a>
+            <a href="{% url 'contacto_servicio' %}">
+                <button class="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">
+                    Contacto Servicio de Salud
+                </button>
+            </a>
+        </div>
+    </div>
 </body>
+
 </html>
